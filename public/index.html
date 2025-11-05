@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Internship Recommender</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --primary-color: #5d68fe;
+      --secondary-color: #9c6dff;
+      --text-color: #222;
+      --light-bg: #f5f7fb;
+      --card-bg: #ffffffcc;
+      --footer-bg: #1a1f36;
+    }
+
+    body {
+      background: var(--light-bg);
+      font-family: "Poppins", sans-serif;
+      margin: 0;
+      color: var(--text-color);
+      overflow-x: hidden;
+    }
+
+    /* Header Title */
+    center h1 {
+      padding: 35px 15px 15px;
+      font-size: 2.7rem;
+      background: linear-gradient(90deg, #5d68fe, #9c6dff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: glow 2s infinite alternate;
+    }
+    @keyframes glow {
+      from { text-shadow: 0 0 10px rgba(93, 104, 254, 0.3); }
+      to { text-shadow: 0 0 25px rgba(93, 104, 254, 0.7); }
+    }
+
+    /* Navbar */
+    nav {
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(12px);
+      padding: 15px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+      border-radius: 0 0 25px 25px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    nav a {
+      text-decoration: none;
+      margin: 0 10px;
+      font-weight: 600;
+      color: #333;
+      background: #e7e9ff;
+      padding: 8px 18px;
+      border-radius: 50px;
+      transition: 0.3s;
+    }
+    nav a:hover {
+      background: linear-gradient(90deg, #5d68fe, #9c6dff);
+      color: #fff;
+    }
+
+    /* User circle */
+    .user-circle {
+      background: #007bff;
+      color: white;
+      font-weight: bold;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-transform: uppercase;
+      margin-left: 10px;
+    }
+
+    /* Marquee */
+    marquee {
+      margin: 20px 0;
+      font-weight: 600;
+      color: #333;
+    }
+
+    /* Hero Section */
+    .hero {
+      padding: 120px 20px;
+      text-align: center;
+      color: #fff;
+      background: linear-gradient(135deg, #5d68fe, #9c6dff);
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: "";
+      position: absolute;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255,255,255,0.25), transparent 70%);
+      top: -50%;
+      left: -50%;
+      animation: rotateBg 20s linear infinite;
+      z-index: 0;
+    }
+    @keyframes rotateBg {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    .hero h2 { font-size: 3rem; position: relative; z-index: 1; animation: fadeInUp 1s ease; }
+    .hero p { position: relative; z-index: 1; font-size: 1.2rem; max-width: 750px; margin: 20px auto 0; opacity: 0.9; }
+
+    /* Cards */
+    .categories {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 30px;
+      max-width: 1200px;
+      margin: 60px auto;
+      padding: 0 25px;
+    }
+    .card-cat {
+      background: var(--card-bg);
+      border-radius: 25px;
+      padding: 60px 20px;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+      backdrop-filter: blur(10px);
+      transition: 0.5s ease;
+      cursor: pointer;
+      transform-style: preserve-3d;
+    }
+    .card-cat:hover {
+      transform: translateY(-12px) rotateX(5deg) rotateY(-3deg);
+      background: linear-gradient(145deg, #ffffffcc, #f3f3ff);
+      box-shadow: 0 20px 40px rgba(93, 104, 254, 0.25);
+    }
+    .card-cat i {
+      font-size: 3.8rem;
+      color: var(--primary-color);
+      margin-bottom: 20px;
+      transition: transform 0.3s;
+    }
+    .card-cat:hover i {
+      transform: scale(1.1) rotate(8deg);
+    }
+
+    /* CTA */
+    .cta {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 18px;
+      padding: 70px 20px 90px;
+    }
+    .cta h3 { font-size: 2.1rem; text-align: center; margin: 0; }
+    .cta p { max-width: 720px; text-align: center; opacity: 0.85; margin: 0; }
+    .cta-actions { display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; }
+    .cta-btn {
+      position: relative;
+      border: 0;
+      padding: 14px 26px;
+      border-radius: 999px;
+      font-weight: 700;
+      color: #fff;
+      background: linear-gradient(90deg, #5d68fe, #9c6dff);
+      box-shadow: 0 12px 30px rgba(93,104,254,0.35);
+      transition: transform .15s ease, box-shadow .15s ease, filter .15s ease;
+      cursor: pointer;
+    }
+    .cta-btn:hover { transform: translateY(-2px); box-shadow: 0 18px 40px rgba(93,104,254,0.45); filter: brightness(1.02); }
+    .cta-subtle {
+      background: #eef0ff;
+      color: #333;
+      padding: 12px 20px;
+      border-radius: 999px;
+      font-weight: 600;
+    }
+
+    /* Chatbot */
+    #chatbot-icon {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background: linear-gradient(135deg, #5d68fe, #9c6dff);
+      color: white;
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 30px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+      cursor: pointer;
+      z-index: 1000;
+      animation: float 3s ease-in-out infinite;
+    }
+    @keyframes float {
+      0%,100%{ transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+    #chatbot-box {
+      position: fixed;
+      bottom: 110px;
+      right: 30px;
+      width: 360px;
+      height: 500px;
+      background: #fff;
+      border-radius: 20px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+      display: none;
+      flex-direction: column;
+      overflow: hidden;
+      z-index: 1000;
+    }
+    #chatbot-box.active { display: flex; animation: slideUp 0.5s ease; }
+    @keyframes slideUp {
+      from { transform: translateY(30px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+    .chat-header {
+      background: linear-gradient(90deg, #5d68fe, #9c6dff);
+      color: white;
+      padding: 18px 20px;
+      font-weight: 600;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .chat-header span { cursor: pointer; font-size: 1.3rem; }
+    #chat-messages { flex: 1; padding: 15px 20px; overflow-y: auto; background: #f7f8ff; }
+    .chat-message { padding: 12px 18px; border-radius: 18px; margin-bottom: 10px; max-width: 80%; word-wrap: break-word; animation: fadeIn 0.3s ease; }
+    .chat-message.user { background: var(--primary-color); color: white; align-self: flex-end; border-bottom-right-radius: 5px; }
+    .chat-message.ai { background: #e8ebff; color: #333; align-self: flex-start; border-bottom-left-radius: 5px; }
+    .chat-input { display: flex; border-top: 1px solid #ddd; padding: 10px; background: #fff; }
+    .chat-input input { flex: 1; border: 1px solid #ccc; border-radius: 50px; padding: 10px 15px; font-size: 1rem; }
+    .chat-input button { border: none; background: linear-gradient(90deg, #5d68fe, #9c6dff); color: white; border-radius: 50px; padding: 10px 20px; margin-left: 10px; font-weight: 600; transition: 0.3s; }
+    .chat-input button:hover { transform: scale(1.05); }
+
+    /* Footer */
+    footer { background: var(--footer-bg); color: white; padding: 40px 20px; text-align: center; }
+    footer .socials i { margin: 0 10px; cursor: pointer; font-size: 1.5rem; transition: 0.3s; }
+    footer .socials i:hover { color: #9c6dff; transform: scale(1.2); }
+
+    /* Animations */
+    @keyframes fadeInUp { from {opacity:0; transform: translateY(20px);} to {opacity:1; transform: translateY(0);} }
+    @keyframes fadeIn { from {opacity:0;} to {opacity:1;} }
+  </style>
+</head>
+<body>
+
+  <center><h1>Internship Recommender</h1></center>
+
+  <nav>
+    <div>
+      <a href="index.html">Home</a>
+      <a href="login.html">Login</a>
+      <a href="signup.html">Signup</a>
+      <a href="aboutus.html">About</a>
+      <a href="admin.html">Admin</a>
+    </div>
+    <div class="d-flex align-items-center">
+      <span id="usernameDisplay"></span>
+      <div id="userCircle" class="user-circle"></div>
+    </div>
+  </nav>
+
+  <marquee>🚀 GOOGLE • MICROSOFT • RELIANCE INDUSTRIES • TATA STEEL • HDFC BANK • INFOSYS • ACCENTURE • IBM • MICROSOFT</marquee>
+
+  <section class="hero">
+    <h2>Find Your Perfect Internship</h2>
+    <p>AI-powered recommendations that match your skills, interests, and career goals — instantly!</p>
+  </section>
+
+  <section class="cta">
+    <h3>Ready for tailored internship picks?</h3>
+    <p>Jump straight into smart recommendations curated from your background, interests, and goals. Fast. Relevant. Simple.</p>
+    <div class="cta-actions">
+      <button class="cta-btn" onclick="goToRecommend()"><i class="fas fa-magic me-2"></i> Go to Recommendations</button>
+      <span class="cta-subtle">Takes less than a minute</span>
+    </div>
+  </section>
+
+  <div id="chatbot-icon"><i class="fas fa-robot"></i></div>
+  <div id="chatbot-box">
+    <div class="chat-header">AI Chatbot <span id="close-chat">✖</span></div>
+    <div id="chat-messages">
+      <div class="chat-message ai">🤖 Hello! I'm your AI assistant. How can I help you find an internship today?</div>
+    </div>
+    <div class="chat-input">
+      <input type="text" id="user-input" placeholder="Type your message..." />
+      <button id="send-button">Send</button>
+    </div>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 Internship Recommender | All Rights Reserved</p>
+    <div class="socials">
+      <i class="fab fa-facebook"></i>
+      <i class="fab fa-linkedin"></i>
+      <i class="fab fa-instagram"></i>
+      <i class="fab fa-twitter"></i>
+    </div>
+  </footer>
+
+  <script>
+    // 🚨 CRITICAL FIX: The server (server.js) now enforces login by checking the cookie on the '/' route.
+    // 🚨 This old client-side redirect logic must be REMOVED to prevent the redirect loop.
+    /*
+    if (!localStorage.getItem("isLoggedIn")) {
+      window.location.href = "login.html";
+    }
+    */
+
+    // 💡 NOTE: The username display logic below relies on an old localStorage data structure
+    // (the 'registeredUsers' array) which is no longer synced with the server's temporary user list.
+    // To properly display the username now, you would need to implement an API route to fetch the user's name
+    // from the server based on the 'currentUserID' cookie. Since that is complex, this logic is commented out 
+    // to prevent the user display from showing incorrect or blank data.
+    /*
+    const currentUserEmail = localStorage.getItem("currentUserID");
+    const users = JSON.parse(localStorage.getItem("registeredUsers")) || [];
+    const currentUser = users.find(u => u.email === currentUserEmail);
+    if (currentUser) {
+      document.getElementById("userCircle").textContent = currentUser.name.charAt(0);
+      document.getElementById("usernameDisplay").textContent = currentUser.name;
+      document.getElementById("usernameDisplay").style.marginRight = "10px";
+      document.getElementById("usernameDisplay").style.fontWeight = "600";
+    }
+    */
+
+    // Cards redirect
+    function goToRecommend() { window.location.href = "recommend.html"; }
+
+    // Chatbot
+    const chatbotIcon = document.getElementById("chatbot-icon");
+    const chatbotBox = document.getElementById("chatbot-box");
+    const closeChat = document.getElementById("close-chat");
+    const sendBtn = document.getElementById("send-button");
+    const userInput = document.getElementById("user-input");
+    const chatMessages = document.getElementById("chat-messages");
+    const chatState = { awaitingDomain: false };
+
+    chatbotIcon.addEventListener("click", () => chatbotBox.classList.toggle("active"));
+    closeChat.addEventListener("click", () => chatbotBox.classList.remove("active"));
+
+    function addMessage(message, type) {
+      const msg = document.createElement("div");
+      msg.classList.add("chat-message", type);
+      msg.textContent = message;
+      chatMessages.appendChild(msg);
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+
+    sendBtn.addEventListener("click", sendMessage);
+    userInput.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") { e.preventDefault(); sendMessage(); }
+    });
+
+    function sendMessage() {
+      const text = userInput.value.trim();
+      if (!text) return;
+      addMessage(text, "user");
+      userInput.value = "";
+
+      setTimeout(() => {
+        const t = text.toLowerCase();
+        const isGreeting = /\b(hi|hello|hey|hola|namaste)\b/.test(t);
+        const isThanks = /\b(thanks|thank you|thx|ty)\b/.test(t);
+        const isAffirm = /\b(yes|yeah|yup|sure|ok|okay|y)\b/.test(t);
+
+        const domainMap = {
+          "data science": "data",
+          "computer science": "it",
+          programming: "it",
+          development: "it",
+          developer: "it",
+          dev: "it",
+          it: "it",
+          software: "it",
+          cs: "it",
+          data: "data",
+          ai: "data",
+          ml: "data",
+          analytics: "data",
+          marketing: "marketing",
+          sales: "marketing",
+          finance: "finance",
+          banking: "finance",
+          fintech: "finance",
+          mechanical: "mechanical",
+          civil: "civil",
+          electrical: "electrical",
+          electronics: "electrical"
+        };
+
+        function detectDomain(s) {
+          for (const k of Object.keys(domainMap)) {
+            if (k.includes(" ")) { if (s.includes(k)) return domainMap[k]; }
+            else { if (new RegExp(`(^|\\b)${k}(\\b|$)`).test(s)) return domainMap[k]; }
+          }
+          return null;
+        }
+
+        function domainReply(d) {
+          if (d === "it") return "💻 Explore IT & Software internships in web, mobile, cloud, and DevOps! Try clicking 'Go to Recommendations' for tailored picks.";
+          if (d === "data") return "📊 Data & AI internships in analytics, ML, and data engineering are trending! Try 'Go to Recommendations'.";
+          if (d === "marketing") return "📣 Marketing internships in digital, content, and growth. Build a strong portfolio!";
+          if (d === "finance") return "💼 Finance internships in analysis, banking, and fintech. Sharpen Excel and valuation skills!";
+          if (d === "mechanical") return "⚙️ Mechanical internships in manufacturing, CAD, and R&D. Look for hands-on projects!";
+          if (d === "civil") return "🏗️ Civil internships in construction, design, and site management. Check local firms and PSUs!";
+          if (d === "electrical") return "🔌 Electrical/ECE internships in embedded, power, and VLSI. Hackathons help a lot!";
+          return null;
+        }
+
+        let reply = "I can help you explore internships in various fields!";
+
+        const domain = detectDomain(t);
+
+        if (isThanks) {
+          reply = "You're welcome! 🌟";
+        } else if (domain) {
+          reply = domainReply(domain) || reply;
+          chatState.awaitingDomain = false;
+        } else if (isGreeting) {
+          reply = "Hi there! 👋 What field are you interested in? For example: IT, Data Science, Marketing, Finance, Mechanical.";
+          chatState.awaitingDomain = true;
+        } else if (isAffirm && chatState.awaitingDomain) {
+          reply = "Great! Which field should I focus on: IT, Data Science, Marketing, Finance, Mechanical, Civil, or Electrical?";
+        } else {
+          reply = "I can help you explore internships in various fields! Tell me a field like IT, Data Science, Marketing, Finance, Mechanical, Civil, or Electrical.";
+        }
+
+        addMessage(reply, "ai");
+      }, 700);
+    }
+
+    // --- Current user display ---
+    async function loadCurrentUser(){
+      try{
+        const res = await fetch('/auth/me', { credentials: 'include' });
+        if(!res.ok) return; // not logged in
+        const data = await res.json();
+        if(!data.authenticated) return;
+        const name = data.user?.fullname || '';
+        const email = data.user?.email || '';
+        const circle = document.getElementById('userCircle');
+        const label = document.getElementById('usernameDisplay');
+        if(circle){ circle.textContent = name ? name.charAt(0).toUpperCase() : (email.charAt(0).toUpperCase() || ''); }
+        if(label){
+          label.textContent = name || email || '';
+          label.style.marginRight = '10px';
+          label.style.fontWeight = '600';
+        }
+      }catch(e){ /* ignore */ }
+    }
+
+    document.addEventListener('DOMContentLoaded', loadCurrentUser);
+  </script>
+</body>
+</html>

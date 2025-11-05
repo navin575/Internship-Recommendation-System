@@ -1,0 +1,402 @@
+[
+  {
+    "title": "Product Manager Intern",
+    "company": "Google",
+    "location": "Bangalore",
+    "education": "PG",
+    "skill": "\tmanagement",
+    "url": "https://careers.google.com/jobs/results/?q=pm%20intern"
+  },
+  {
+    "title": "Data Scientist Intern",
+    "company": "Microsoft",
+    "location": "Hyderabad",
+    "education": "PG",
+    "skill": "data_analysis",
+    "url": "https://careers.microsoft.com/v2/global/en/universityinternship"
+  },
+  {
+    "title": "Machine Learning Intern",
+    "company": "Amazon",
+    "location": "Bangalore",
+    "education": "PG",
+    "skill": "\tcoding",
+    "url": "https://www.amazon.jobs/en/job_categories/data-science"
+  },
+  {
+    "title": "FinTech PM Intern",
+    "company": "Razorpay",
+    "location": "Remote",
+    "education": "PG",
+    "skill": "management\t",
+    "url": "https://razorpay.com/careers/"
+  },
+  {
+    "title": "AI Research Intern",
+    "company": "IBM Research",
+    "location": "Delhi",
+    "education": "PG",
+    "skill": "research",
+    "url": "https://www.ibm.com/employment/in-en/internships/research-internships/"
+  },
+  {
+    "title": "Cloud Solution Architect",
+    "company": "Cisco",
+    "location": "Bangalore",
+    "education": "PG",
+    "skill": "coding",
+    "url": "https://jobs.cisco.com/jobs/Search/India/"
+  },
+  {
+    "title": "Digital Transformation Strategist",
+    "company": "Wipro",
+    "location": "Remote",
+    "education": "PG",
+    "skill": "management",
+    "url": "https://careers.wipro.com/careers-home"
+  },
+  {
+    "title": "Quantum Computing Research",
+    "company": "TCS",
+    "location": "Chennai",
+    "education": "PG",
+    "skill": "research",
+    "url": "https://www.tcs.com/careers"
+  },
+  {
+    "title": "Advanced Analytics Intern",
+    "company": "Ola Electric\t",
+    "location": "Bangalore",
+    "education": "PG",
+    "skill": "\tdata_analysis",
+    "url": "https://www.olacabs.com/careers"
+  },
+  {
+    "title": "UX Researcher Intern",
+    "company": "Adobe",
+    "location": "Remote",
+    "education": "PG",
+    "skill": "research",
+    "url": "https://research.adobe.com/careers/internships/"
+  },
+  {
+    "title": "Investment Banking Analyst",
+    "company": "Goldman Sachs",
+    "location": "Mumbai",
+    "education": "PG",
+    "skill": "management",
+    "url": "https://www.goldmansachs.com/careers/students/programs-and-internships"
+  },
+  {
+    "title": "Strategy Consultant Intern",
+    "company": "Deloitte",
+    "location": "Delhi",
+    "education": "PG",
+    "skill": "management",
+    "url": "https://www.deloitte.com/in/en/careers"
+  },
+  {
+    "title": "Financial Analyst Intern",
+    "company": "J.P. Morgan\t",
+    "location": "Mumbai",
+    "education": "PG",
+    "skill": "\tdata_analysis",
+    "url": "https://jpmc.fa.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX_1001"
+  },
+  {
+    "title": "Risk Advisory Intern",
+    "company": "KPMG",
+    "location": "Bangalore",
+    "education": "PG",
+    "skill": "\tdata_analysis",
+    "url": "https://kpmg.com/in/en/home/careers.html"
+  },
+  {
+    "title": "Venture Capital Analyst",
+    "company": "Sequoia Capital",
+    "location": "Bangalore",
+    "education": "PG",
+    "skill": "management",
+    "url": "https://www.sequoiacap.com/india/careers/"
+  },
+  {
+    "title": "Audit & Assurance Intern",
+    "company": "PwC",
+    "location": "Hyderabad",
+    "education": "PG",
+    "skill": "data_analysis",
+    "url": "https://www.pwc.in/careers.html"
+  },
+  {
+    "title": "Corporate Strategy Intern",
+    "company": "Standard Chartered",
+    "location": "Mumbai",
+    "education": "PG",
+    "skill": "management",
+    "url": "https://www.sc.com/en/careers/"
+  },
+  {
+    "title": "Economic Policy Intern",
+    "company": "NITI Aayog\t",
+    "location": "Delhi",
+    "education": "PG",
+    "skill": "\tresearch",
+    "url": "https://niti.gov.in/internship-scheme"
+  },
+  {
+    "title": "Market Entry Strategist\t",
+    "company": "BCG",
+    "location": "Mumbai",
+    "education": "PG",
+    "skill": "management",
+    "url": "https://careers.bcg.com/locations/india"
+  },
+  {
+    "title": "Insurance Risk Intern",
+    "company": "ICICI Bank",
+    "location": "Mumbai",
+    "education": "PG",
+    "skill": "\tdata_analysis",
+    "url": "https://www.icicibank.com/careers/"
+  },
+  {
+    "title": "Frontend Developer Intern",
+    "company": "Swiggy",
+    "location": "Bangalore",
+    "education": "UG",
+    "skill": "coding",
+    "url": "https://careers.swiggy.com/"
+  },
+  {
+    "title": "UI/UX Design Intern",
+    "company": "Zomato",
+    "location": "Delhi",
+    "education": "UG",
+    "skill": "design",
+    "url": "https://www.zomato.com/careers"
+  },
+  {
+    "title": "Backend Engineering Intern",
+    "company": "Flipkart",
+    "location": "Bangalore",
+    "education": "UG",
+    "skill": "coding",
+    "url": "https://www.flipkartcareers.com/index.html#!/joblist"
+  },
+  {
+    "title": "Graphic Design Intern",
+    "company": "Media.net\t",
+    "location": "Mumbai",
+    "education": "UG",
+    "skill": "design",
+    "url": "https://www.media.net/careers"
+  },
+  {
+    "title": "Cloud Intern",
+    "company": "Infosys",
+    "location": "Remote",
+    "education": "UG",
+    "skill": "coding",
+    "url": "https://www.infosys.com/careers.html"
+  },
+  {
+    "title": "Mobile App Developer",
+    "company": "L&T Infotech",
+    "location": "Chennai",
+    "education": "UG",
+    "skill": "coding",
+    "url": "https://www.lntinfotech.com/careers/"
+  },
+  {
+    "title": "Game Developer Intern",
+    "company": "Nazara Games",
+    "location": "Hyderabad",
+    "education": "UG",
+    "skill": "coding",
+    "url": "https://www.nazara.com/careers/"
+  },
+  {
+    "title": "Digital Content Designer",
+    "company": "Vistara",
+    "location": "Delhi",
+    "education": "UG",
+    "skill": "design",
+    "url": "https://www.airvistara.com/in/en/corporate/careers"
+  },
+  {
+    "title": "Web Analytics Intern",
+    "company": "Naukri.com\t",
+    "location": "Remote",
+    "education": "UG",
+    "skill": "data_analysis\t",
+    "url": "https://infoedge.in/careers/"
+  },
+  {
+    "title": "Embedded Systems Trainee",
+    "company": "Micron Technology",
+    "location": "Hyderabad",
+    "education": "UG",
+    "skill": "coding",
+    "url": "https://www.micron.com/about/careers/university-recruiting/internships"
+  },
+  {
+    "title": "Digital Marketing Intern",
+    "company": "Dentsu India",
+    "location": "Mumbai",
+    "education": "UG",
+    "skill": "marketing",
+    "url": "https://www.dentsu.com/in/en/careers"
+  },
+  {
+    "title": "Business Analyst Trainee",
+    "company": "TCS",
+    "location": "Remote",
+    "education": "UG",
+    "skill": "management",
+    "url": "https://www.tcs.com/careers"
+  },
+  {
+    "title": "Content Strategist Intern",
+    "company": "BYJU'S",
+    "location": "Remote",
+    "education": "UG",
+    "skill": "marketing",
+    "url": "https://byjus.com/careers"
+  },
+  {
+    "title": "Sales & Operations Intern",
+    "company": "Reliance Jio",
+    "location": "Chennai",
+    "education": "UG",
+    "skill": "management\t",
+    "url": "https://www.jio.com/careers"
+  },
+  {
+    "title": "Brand Management Intern",
+    "company": "HUL",
+    "location": "Mumbai",
+    "education": "UG",
+    "skill": "\tmarketing",
+    "url": "https://www.unilever.com/careers/student-and-graduate-careers/"
+  },
+  {
+    "title": "Operations Intern",
+    "company": "Uber",
+    "location": "Bangalore",
+    "education": "UG",
+    "skill": "management\t",
+    "url": "https://www.uber.com/en-IN/careers/"
+  },
+  {
+    "title": "Market Research Intern",
+    "company": "Nielsen",
+    "location": "Bangalore",
+    "education": "UG",
+    "skill": "marketing",
+    "url": "https://www.nielsen.com/careers"
+  },
+  {
+    "title": "HR Intern",
+    "company": "TATA Steel\t",
+    "location": "Hyderabad",
+    "education": "UG",
+    "skill": "management",
+    "url": "https://www.tatasteel.com/careers/"
+  },
+  {
+    "title": "Public Relations Intern\t",
+    "company": "Ogilvy\t",
+    "location": "Delhi",
+    "education": "UG",
+    "skill": "marketing\t",
+    "url": "https://www.ogilvy.com/in/careers"
+  },
+  {
+    "title": "EdTech Teaching Assistant",
+    "company": "Teach For India\t",
+    "location": "Delhi",
+    "education": "UG",
+    "skill": "teaching",
+    "url": "https://www.teachforindia.org/careers"
+  },
+  {
+    "title": "Office Assistant Intern\t",
+    "company": "Chennai Municipal Corp",
+    "location": "Chennai",
+    "education": "Diploma",
+    "skill": "data_entry\t",
+    "url": "https://www.chennaicorporation.gov.in/"
+  },
+  {
+    "title": "Customer Service Intern",
+    "company": "Axis Bank",
+    "location": "Delhi",
+    "education": "Diploma",
+    "skill": "communication\t",
+    "url": "https://www.axisbank.com/careers/campus-careers"
+  },
+  {
+    "title": "Data Entry Specialist",
+    "company": "Genpact",
+    "location": "Remote",
+    "education": "Diploma",
+    "skill": "data_entry",
+    "url": "https://www.genpact.com/careers"
+  },
+  {
+    "title": "Field Survey Intern",
+    "company": "Census Office",
+    "location": "Mumbai",
+    "education": "Diploma",
+    "skill": "communication\t",
+    "url": "https://censusindia.gov.in/census_and_you/employment.html"
+  },
+  {
+    "title": "Telesales Intern",
+    "company": "Airtel",
+    "location": "Hyderabad",
+    "education": "Diploma",
+    "skill": "communication",
+    "url": "https://www.airtel.in/careers/jobs/"
+  },
+  {
+    "title": "Warehouse Assistant",
+    "company": "BigBasket",
+    "location": "Bangalore",
+    "education": "Diploma",
+    "skill": "data_entry",
+    "url": "https://www.bigbasket.com/careers"
+  },
+  {
+    "title": "Junior IT Support Trainee",
+    "company": "Tech Mahindra",
+    "location": "Chennai",
+    "education": "Diploma",
+    "skill": "communication",
+    "url": "https://www.techmahindra.com/en-in/careers/"
+  },
+  {
+    "title": "Logistics Coordinator Trainee",
+    "company": "Blue Dart",
+    "location": "Mumbai",
+    "education": "Diploma",
+    "skill": "data_entry",
+    "url": "https://www.bluedart.com/careers"
+  },
+  {
+    "title": "Community Outreach Worker",
+    "company": "Goonj NGO",
+    "location": "Delhi",
+    "education": "Diploma",
+    "skill": "communication",
+    "url": "https://goonj.org/get-involved/careers/"
+  },
+  {
+    "title": "Site Assistant",
+    "company": "L&T",
+    "location": "Delhi",
+    "education": "Diploma",
+    "skill": "data_entry",
+    "url": "https://www.larsentoubro.com/corporate/careers/"
+  }
+]

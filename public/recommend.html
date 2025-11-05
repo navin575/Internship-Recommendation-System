@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PM Internship Recommendations</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+
+<style>
+body {background:#eef2f7; font-family:'Poppins',sans-serif; min-height:100vh; display:flex; flex-direction:column;}
+#preloader{position:fixed; top:0; left:0; width:100%; height:100%; background:#063f95; display:flex; justify-content:center; align-items:center; z-index:9999;}
+.spinner{width:60px; height:60px; border:6px solid rgba(255,255,255,0.2); border-top-color:#fff; border-radius:50%; animation:spin 1s linear infinite;}
+@keyframes spin{to{transform:rotate(360deg);} }
+.preloader-hidden{opacity:0; visibility:hidden; transition:0.5s;}
+.main-header{background:linear-gradient(90deg,#0d479e,#0955b8); padding:1.5rem;text-align:center;color:white; position: relative;}
+.card-container{background:rgba(255,255,255,0.7);backdrop-filter:blur(12px);border-radius:16px;padding:2.5rem;margin:20px auto; max-width:1100px;}
+.intern-card{background:rgba(255,255,255,0.95);border-radius:16px;padding:20px;margin-bottom:20px;box-shadow:0 6px 16px rgba(0,0,0,0.06);opacity:0; transform:translateY(20px); transition:0.3s;}
+.intern-card.fade-in{opacity:1; transform:translateY(0);}
+.intern-title{font-weight:700;color:#0b6cff;}
+.meta-line{font-size:0.9rem;color:#666;margin-top:5px;}
+.apply-row{margin-top:15px; display:flex; gap:10px;}
+footer{background-color:#0a326d;color:#b5c7e0;text-align:center;padding:1.5rem;margin-top:auto;border-radius:12px 12px 0 0;}
+.admin-btn{position:absolute; top:1.5rem; right:1.5rem;}
+.home-btn{position:absolute; top:1.5rem; left:1.5rem;}
+.no-results{text-align:center;color:#666;margin-top:40px;font-style:italic;}
+</style>
+</head>
+
+<body>
+
+<div id="preloader"><div class="spinner"></div></div>
+
+<header class="main-header">
+  <h1>Internship Recommendations</h1>
+  <a href="index.html" class="btn btn-outline-light home-btn"><i class="fas fa-home me-2"></i>Home</a> 
+  <a href="admin.html" class="btn btn-outline-light admin-btn"><i class="fas fa-user-shield me-2"></i>Admin Panel</a> 
+</header>
+
+<main class="container py-4">
+  <div class="card-container">
+    <h4>Find Your Perfect Internship 🚀</h4>
+    <div class="row g-3">
+      <div class="col-md-3">
+        <label>Education</label>
+        <select id="education" class="form-select" onchange="updateSkills()">
+          <option value="">All</option>
+          <option value="Diploma">Diploma</option>
+          <option value="UG">Undergraduate</option>
+          <option value="PG">Postgraduate</option>
+        </select>
+      </div>
+
+      <div class="col-md-3">
+        <label>Top Skill</label>
+        <select id="skill" class="form-select"><option value="">All</option></select>
+      </div>
+
+      <div class="col-md-3">
+        <label>Location</label>
+        <select id="location" class="form-select">
+          <option value="">All</option>
+          <option value="Remote">Remote</option>
+          <option value="Delhi">Delhi</option>
+          <option value="Mumbai">Mumbai</option>
+          <option value="Bangalore">Bangalore</option>
+          <option value="Hyderabad">Hyderabad</option>
+          <option value="Chennai">Chennai</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="mt-3">
+      <button class="btn btn-primary" onclick="showRecommendations()">Find Internships</button>
+    </div>
+  </div>
+
+  <section id="recommendations-section">
+    <h4 class="mt-5 mb-3">Recommended Internships <i class="fas fa-briefcase"></i></h4>
+    <div id="recommendations" class="row"></div>
+  </section>
+</main>
+
+<footer>&copy; 2025 PM Internship Finder | All Rights Reserved</footer>
+
+<script>
+const skillsByEducation = {
+  Diploma:["data_entry","communication"],
+  UG:["coding","teaching","marketing","design"],
+  PG:["management","research","data_analysis"]
+};
+
+// ✅ Fetch internships from server API (NOT localStorage)
+async function loadInternshipData() {
+  try {
+    const res = await fetch('/api/internships');
+    let data = await res.json();
+
+    data = data.map(intern => ({
+        ...intern,
+        type: intern.type || "pm",
+        sector: intern.sector || "General"
+    }));
+
+    return data;
+  } catch (e) {
+    console.error("Server fetch failed, fallback to browser storage");
+
+    // fallback for offline mode
+    return JSON.parse(localStorage.getItem("internships")) || [];
+  }
+}
+
+function updateSkills(){
+  const edu = document.getElementById("education").value;
+  const skillSelect = document.getElementById("skill");
+
+  skillSelect.innerHTML='<option value="">All</option>';
+  const skills = skillsByEducation[edu] || [].concat(...Object.values(skillsByEducation));
+
+  skills.forEach(s=>{
+    const label = s.replace("_"," ").replace(/\b\w/g, c=>c.toUpperCase());
+    skillSelect.innerHTML += `<option value="${s}">${label}</option>`;
+  });
+}
+
+function trackApplication(){
+  let c = parseInt(localStorage.getItem("applicationsTracked") || 0);
+  localStorage.setItem("applicationsTracked", c+1);
+}
+
+async function showRecommendations(){
+  const internships = await loadInternshipData();
+  const box = document.getElementById("recommendations");
+  box.innerHTML = "";
+
+  const edu = document.getElementById("education").value;
+  const skill = document.getElementById("skill").value;
+  const loc = document.getElementById("location").value;
+
+  let filtered = internships.filter(i =>
+    i.type==="pm" &&
+    (edu ? i.education===edu : true) &&
+    (skill ? i.skill===skill : true) &&
+    (loc ? i.location===loc : true)
+  );
+
+  if(!filtered.length){
+    box.innerHTML = `<div class="no-results">No internships match your criteria</div>`;
+    return;
+  }
+
+  // show up to 50 (not only 5)
+  filtered.slice(0,50).forEach((i,index)=>{
+    const div = document.createElement("div");
+    div.className = "col-md-6 col-lg-4 d-flex";
+    div.innerHTML = `
+      <div class="intern-card flex-fill">
+        <div class="intern-title">${i.title}</div>
+        <div class="meta-line"><i class="fas fa-building"></i> ${i.company}</div>
+        <div class="meta-line"><i class="fas fa-chart-line"></i> ${i.sector}</div>
+        <div class="meta-line"><i class="fas fa-map-marker-alt"></i> ${i.location}</div>
+        <div class="apply-row">
+          <a href="${i.url}" target="_blank" onclick="trackApplication()" class="btn btn-primary btn-sm">
+            <i class="fas fa-paper-plane"></i> Apply
+          </a>
+        </div>
+      </div>`;
+    box.appendChild(div);
+    setTimeout(()=>div.querySelector(".intern-card").classList.add("fade-in"),index*80);
+  });
+}
+
+document.addEventListener("DOMContentLoaded",()=>{
+  updateSkills();
+  setTimeout(()=>{
+    document.getElementById("preloader").classList.add("preloader-hidden");
+    showRecommendations();
+  },800);
+});
+</script>
+
+</body>
+</html>

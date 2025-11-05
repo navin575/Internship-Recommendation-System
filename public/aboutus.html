@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - AI Internship Recommender</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* General Body Styles */
+        body {
+            font-family: 'Poppins', sans-serif; /* Modern, clean font */
+            text-align: center;
+            background: linear-gradient(135deg, #e0f2f7 0%, #cce7f5 100%); /* Subtle gradient background */
+            padding: 50px 20px;
+            color: #333;
+            overflow-x: hidden;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            position: relative; /* For background elements */
+            overflow: hidden; /* Hide anything outside body for effects */
+        }
+
+        /* Background Animated Shapes (Engaging visual flair) */
+        .background-shapes {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1; /* Send to back */
+        }
+        .shape {
+            position: absolute;
+            background-color: rgba(100, 180, 250, 0.1); /* Light blue, semi-transparent */
+            border-radius: 50%;
+            animation: moveShape 15s infinite ease-in-out alternate;
+        }
+        .shape:nth-child(1) { width: 150px; height: 150px; top: 10%; left: 5%; animation-delay: 0s; }
+        .shape:nth-child(2) { width: 200px; height: 200px; top: 70%; left: 80%; animation-delay: 3s; background-color: rgba(150, 220, 255, 0.15); }
+        .shape:nth-child(3) { width: 100px; height: 100px; top: 40%; left: 20%; animation-delay: 6s; }
+        .shape:nth-child(4) { width: 180px; height: 180px; top: 50%; left: 50%; animation-delay: 9s; background-color: rgba(180, 230, 255, 0.1); }
+        .shape:nth-child(5) { width: 120px; height: 120px; top: 20%; left: 90%; animation-delay: 12s; }
+
+        @keyframes moveShape {
+            0% { transform: translate(0, 0) scale(1); opacity: 0.8; }
+            25% { transform: translate(20px, 30px) scale(1.1); opacity: 0.9; }
+            50% { transform: translate(-10px, -20px) scale(1); opacity: 0.8; }
+            75% { transform: translate(30px, -10px) scale(1.05); opacity: 0.95; }
+            100% { transform: translate(0, 0) scale(1); opacity: 0.8; }
+        }
+
+        /* Main Content Container */
+        main {
+            background-color: #ffffff;
+            padding: 40px 30px;
+            border-radius: 15px; /* Slightly more rounded */
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1); /* More pronounced shadow */
+            max-width: 850px; /* Wider content area */
+            width: 90%;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInSlideUp 1s ease-out forwards;
+            position: relative; /* For interactive elements within */
+            z-index: 1; /* Ensure content is above background shapes */
+        }
+
+        /* Headings */
+        h1 {
+            color: #1a5276; /* Darker, more professional blue */
+            font-size: 3.2em;
+            margin-bottom: 25px;
+            letter-spacing: 0.8px;
+            animation: textPopIn 0.8s ease-out 0.5s forwards;
+            opacity: 0;
+            transform: scale(0.9);
+            font-weight: 700; /* Bolder for impact */
+        }
+
+        h1 span { /* Highlighting "AI Internship Recommender" */
+            color: #007bff;
+            display: block; /* New line for recommender */
+            font-size: 0.8em;
+            margin-top: 5px;
+        }
+
+        h2 {
+            color: #2e86de; /* Brighter blue for sub-headings */
+            font-size: 2em;
+            margin-top: 35px;
+            margin-bottom: 15px;
+            animation: textPopIn 0.8s ease-out 0.8s forwards;
+            opacity: 0;
+            transform: scale(0.9);
+            font-weight: 600;
+        }
+
+        /* Paragraphs */
+        p {
+            line-height: 1.8;
+            max-width: 700px;
+            margin: 15px auto;
+            font-size: 1.15em;
+            color: #555;
+            opacity: 0;
+            animation: fadeIn 1s ease-out forwards;
+            padding: 0 10px; /* Little padding for text on smaller screens */
+        }
+        p:nth-of-type(1) { animation-delay: 1s; }
+        p:nth-of-type(2) { animation-delay: 1.3s; }
+
+        /* Strong tag - now with a subtle pulse */
+        strong {
+            color: #007bff;
+            font-weight: 700;
+            display: inline-block; /* Required for transform */
+            animation: pulseText 2s infinite ease-in-out;
+        }
+        @keyframes pulseText {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.03); }
+        }
+
+        /* Link Styling - now a more prominent, interactive button */
+        .cta-button {
+            display: inline-block;
+            margin-top: 40px;
+            padding: 14px 30px;
+            background: linear-gradient(45deg, #007bff, #0056b3); /* Gradient button */
+            color: white;
+            text-decoration: none;
+            border-radius: 35px;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            letter-spacing: 1px;
+            box-shadow: 0 8px 25px rgba(0, 123, 255, 0.4);
+            opacity: 0;
+            transform: translateY(15px);
+            animation: fadeInSlideUp 0.8s ease-out 1.6s forwards;
+            position: relative;
+            overflow: hidden; /* For ripple effect */
+        }
+
+        .cta-button:hover {
+            transform: translateY(-5px) scale(1.03);
+            box-shadow: 0 12px 30px rgba(0, 123, 255, 0.6);
+            background: linear-gradient(45deg, #0056b3, #007bff); /* Reverse gradient on hover */
+        }
+
+        /* Ripple effect for button (JavaScript required for full effect, but CSS sets the stage) */
+        .cta-button span.ripple {
+            position: absolute;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.4);
+            animation: ripple-animation 0.6s linear forwards;
+            transform: scale(0);
+        }
+        @keyframes ripple-animation {
+            to {
+                transform: scale(4);
+                opacity: 0;
+            }
+        }
+
+
+        /* Keyframe Animations (from previous version, slightly tweaked) */
+        @keyframes fadeInSlideUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes textPopIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        /* Mission emoji animation */
+        p:last-of-type .emoji {
+            display: inline-block;
+            animation: bounce 1.5s infinite ease-in-out;
+            margin-left: 8px; /* More space */
+            font-size: 1.2em; /* Slightly larger */
+        }
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-7px); } /* More pronounced bounce */
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            body { padding: 30px 15px; }
+            main { padding: 30px 20px; }
+            h1 { font-size: 2.5em; }
+            h1 span { font-size: 0.7em; }
+            h2 { font-size: 1.7em; }
+            p { font-size: 1.05em; }
+            .cta-button { padding: 12px 25px; font-size: 0.9em; }
+            .shape:nth-child(1) { width: 100px; height: 100px; }
+            .shape:nth-child(2) { width: 150px; height: 150px; }
+            .shape:nth-child(3) { width: 80px; height: 80px; }
+            .shape:nth-child(4) { width: 130px; height: 130px; }
+            .shape:nth-child(5) { width: 90px; height: 90px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="background-shapes">
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+    </div>
+
+    <main>
+        <h1>About <span>Internship Recommender</span></h1>
+        <p>
+            The <strong>Internship Recommender</strong> is designed to help students from Tier-2/3 colleges discover personalized internship opportunities.
+            Our AI-powered engine suggests the best matches based on individual skills and interests across various fields like Web Development, AI/ML, Data Science, and Cybersecurity.
+        </p>
+        <h2>Our Mission</h2>
+        <p>To make internships accessible and personalized for every student. <span class="emoji">🚀</span></p>
+        <a href="index.html" class="cta-button">Explore Internships</a>
+    </main>
+
+    <script>
+        // Simple JavaScript for a "ripple" click effect on the button
+        document.querySelector('.cta-button').addEventListener('click', function(e) {
+            const button = e.target;
+            const ripple = document.createElement('span');
+            ripple.classList.add('ripple');
+
+            // Get position of mouse relative to button
+            const rect = button.getBoundingClientRect();
+            const size = Math.max(rect.width, rect.height);
+            const x = e.clientX - rect.left - (size / 2);
+            const y = e.clientY - rect.top - (size / 2);
+
+            ripple.style.width = ripple.style.height = `${size}px`;
+            ripple.style.left = `${x}px`;
+            ripple.style.top = `${y}px`;
+
+            button.appendChild(ripple);
+
+            // Remove the ripple element after animation to prevent clutter
+            ripple.addEventListener('animationend', () => {
+                ripple.remove();
+            });
+        });
+    </script>
+</body>
+</html>
